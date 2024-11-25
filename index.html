@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz cumpleaños, mi amor!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <canvas id="visualizerCanvas"></canvas>
+
+    <div class="container">
+        <h1>🎂 ¡Feliz Cumpleaños, Mi Amor! 🎉</h1>
+        <p>Hoy celebramos el día más especial del año porque nació la persona más increíble que he conocido.</p>
+        <p>Gracias por iluminar mi vida con tu sonrisa y tu amor. 💕</p>
+
+        <!-- Galería deslizable -->
+        <div class="slider">
+            <div class="slides">
+                <!-- Cada imagen en el slider -->
+                <div class="slide"><img src="Fotos/imagen1.jpg" alt="Foto 1"></div>
+                <div class="slide"><img src="Fotos/imagen2.jpg" alt="Foto 2"></div>
+                <div class="slide"><img src="Fotos/imagen3.jpeg" alt="Foto 3"></div>
+                <div class="slide"><img src="Fotos/imagen4.jpeg" alt="Foto 4"></div>
+            </div>
+            <div class="indicators">
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+            <!-- Controles -->
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+
+        </div>
+
+        <p class="message">Te amo con todo mi corazón. 💖</p>
+    </div>
+
+    <!-- Reproductor de música -->
+    <div class="music-player">
+        <h1>Mi canciones para tí</h1>
+        <div id="song-title">Chukura - Lonely</div>
+        
+        <div class="controls">
+            <!-- Botones de reproducción -->
+            <button id="prev" onclick="changeSong(-1)"><i class="fas fa-step-backward"></i></button>
+            <button id="play-pause" onclick="togglePlay()"><i class="fas fa-play"></i></button>
+            <button id="next" onclick="changeSong(1)"><i class="fas fa-step-forward"></i></button>
+        </div>
+    
+        <!-- Selección de canciones -->
+        <select id="song-list" onchange="selectSong(this.value)">
+            <option value="0">Cigarettes After Sex - Nothing's Gonna Hurt You Baby</option>
+            <option value="1">Gorillaz - On Melancholy Hill</option>
+            <option value="2">ILLENIUM & Sasha Sloan - U & Me</option>
+            <option value="3">Imagine Dragons - West Coast</option>
+            <option value="4">Joji - Like You Do</option>
+            <option value="5">Kali Uchis - Melting</option>
+            <option value="6">Kenny Rogers - You Decorated My Life</option>
+            <option value="7">Lady Gaga - Shallow ft. Bradley Cooper</option>
+            <option value="8">Lana Del Rey - Love Song</option>
+            <option value="9">Lana Del Rey - Queen of Disaster</option>
+            <option value="10">Melanie Martinez - Training Wheels</option>
+            <option value="11">Metro Boomin - Calling</option>
+            <option value="12">Mon Laferte - Primaveral</option>
+            <option value="13">Qué Se Siente Que Me Gustes Tanto - Daniel, Me Estás Matando</option>
+            <option value="14">Slander - Superhuman feat. Eric Leva</option>
+            <option value="15">Stephen Sanchez - Until I Found You</option>
+            <option value="16">The Neighbourhood - Stargazing</option>
+        </select>
+        
+        <!-- Barra de progreso -->
+        <div class="progress-container" onclick="seekSong(event)">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Control de volumen -->
+        <div class="volume-control">
+            <label for="volume-control">Volumen:</label>
+            <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.5" onchange="setVolume()">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

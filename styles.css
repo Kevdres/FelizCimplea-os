@@ -1,0 +1,271 @@
+/* Fuente externa */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* General */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ff7eb3, #ff758c);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin: 5% auto;
+    padding: 20px;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos y párrafos */
+h1 {
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.message {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Reproductor de música */
+.music-player {
+    margin-top: 20px;
+    padding: 20px;
+    background: #ffffff1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.music-player h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #ffd9ec; /* Rosa claro */
+}
+
+/* Controles del reproductor */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.controls button {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.controls button:hover {
+    transform: scale(1.1);
+    background-color: #e84118;
+}
+
+/* Select para canciones */
+#song-list {
+    margin: 15px 0;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 1em;
+    border: 1px solid #ff758c;
+    background: white;
+    color: #ff758c;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Control de volumen */
+.volume-control {
+    margin-top: 15px;
+}
+
+.volume-control label {
+    font-size: 1.2em;
+    color: white;
+}
+
+#volume-control {
+    width: 60%;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+/* Título de la canción */
+#song-title {
+    font-size: 1.2em;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffd9ec;
+}
+
+/* Barra de progreso */
+.progress-container {
+    position: relative;
+    width: 80%;
+    height: 20px;
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, #ff758c, #ff4757);
+    border-radius: 10px;
+}
+
+.progress-container:hover .progress-bar {
+    cursor: pointer;
+}
+
+.progress-bar-active {
+    transition: width 0.5s ease;
+}
+
+/* Botones prev y next */
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    z-index: 2;
+}
+
+button.prev:hover, button.next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+/* Slider */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Indicadores del slider */
+.indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.indicator.active {
+    background-color: #bb1669; /* Rosa claro */
+}
+
+
+/* Fondo interactivo */
+canvas#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Estilo del volumen */
+#volume-control {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80%;
+    height: 10px;
+    background: linear-gradient(to right, #ff758c, #ff4757);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#volume-control:hover {
+    background: linear-gradient(to right, #ff4757, #ff758c);
+    cursor: pointer;
+}
+
+#volume-control::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 2px solid #ff4757;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#volume-control::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+    background-color: #ffd9ec;
+}
