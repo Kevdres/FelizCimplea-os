@@ -6,7 +6,7 @@ const slides = document.querySelector('.slides');
 const indicators = document.querySelectorAll('.indicator');
 let currentSlide = 0;
 const songs = [
-    new Audio('Musica/Cigarettes After Sex - Nothing\'s Gonna Hurt You Baby.mp3'),
+    new Audio('Musica/Stephen Sanchez - Until I Found You.mp3'),
     new Audio('Musica/Gorillaz - On Melancholy Hill.mp3'),
     new Audio('Musica/ILLENIUM & Sasha Sloan - U & Me.mp3'),
     new Audio('Musica/Imagine Dragons - West Coast.mp3'),
@@ -21,13 +21,13 @@ const songs = [
     new Audio('Musica/Mon Laferte - Primaveral.mp3'),
     new Audio('Musica/Qué Se Siente Que Me Gustes Tanto - Daniel, Me Estás Matando.mp3'),
     new Audio('Musica/Slander - Superhuman feat. Eric Leva.mp3'),
-    new Audio('Musica/Stephen Sanchez - Until I Found You.mp3'),
+    new Audio('Musica/Cigarettes After Sex - Nothing\'s Gonna Hurt You Baby.mp3'),
     new Audio('Musica/The Neighbourhood - Stargazing.mp3')
 ];
 
 
 const songTitles = [
-    "Cigarettes After Sex - Nothing's Gonna Hurt You Baby",
+    "Stephen Sanchez - Until I Found You",
     "Gorillaz - On Melancholy Hill",
     "ILLENIUM & Sasha Sloan - U & Me",
     "Imagine Dragons - West Coast",
@@ -42,7 +42,7 @@ const songTitles = [
     "Mon Laferte - Primaveral",
     "Qué Se Siente Que Me Gustes Tanto - Daniel, Me Estás Matando",
     "Slander - Superhuman feat. Eric Leva",
-    "Stephen Sanchez - Until I Found You",
+    "Cigarettes After Sex - Nothing's Gonna Hurt You Baby",
     "The Neighbourhood - Stargazing"
 ];
 
@@ -117,7 +117,7 @@ function seekSong(event) {
     song.currentTime = newTime;
 }
 
-// Efectos de partículas en el fondo
+/// Efectos de partículas en el fondo
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -125,6 +125,10 @@ const heartImage = new Image();
 heartImage.src = 'Fotos/heart_black.png';
 const serpentineImage = new Image();
 serpentineImage.src = 'Fotos/serpentine_image.png';
+const poro1Image = new Image();
+poro1Image.src = 'Fotos/poro1.png';
+const poro2Image = new Image();
+poro2Image.src = 'Fotos/poro2.png';
 
 function initCanvas() {
     canvas.width = window.innerWidth;
@@ -135,11 +139,13 @@ function initCanvas() {
 function createParticles() {
     particles = [];
     for (let i = 0; i < 100; i++) {
-        const type = Math.random() > 0.5 ? 'heart' : 'serpentine';
+        // Asignar un tipo aleatorio de partícula
+        const types = ['heart', 'serpentine', 'poro1', 'poro2'];
+        const type = types[Math.floor(Math.random() * types.length)];
         particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random() * 30 + 20, 
+            size: Math.random() * 30 + 20,
             speedX: Math.random() * 2 - 1,
             speedY: Math.random() * 2 - 1,
             type: type
@@ -150,13 +156,27 @@ function createParticles() {
 function drawParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
-        if (p.type === 'heart') {
-            ctx.drawImage(heartImage, p.x, p.y, p.size, p.size);
-        } else if (p.type === 'serpentine') {
-            ctx.drawImage(serpentineImage, p.x, p.y, p.size, p.size);
+        // Dibujar la imagen correspondiente según el tipo
+        switch (p.type) {
+            case 'heart':
+                ctx.drawImage(heartImage, p.x, p.y, p.size, p.size);
+                break;
+            case 'serpentine':
+                ctx.drawImage(serpentineImage, p.x, p.y, p.size, p.size);
+                break;
+            case 'poro1':
+                ctx.drawImage(poro1Image, p.x, p.y, p.size, p.size);
+                break;
+            case 'poro2':
+                ctx.drawImage(poro2Image, p.x, p.y, p.size, p.size);
+                break;
         }
+
+        // Actualizar la posición de la partícula
         p.x += p.speedX;
         p.y += p.speedY;
+
+        // Rebotar en los bordes
         if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
     });
@@ -208,3 +228,15 @@ indicators.forEach((indicator, index) => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const songList = document.getElementById('song-list');
+
+    // Añadir un evento de clic para mostrar u ocultar las opciones
+    songList.addEventListener('click', () => {
+        if (songList.classList.contains('active')) {
+            songList.classList.remove('active');
+        } else {
+            songList.classList.add('active');
+        }
+    });
+});

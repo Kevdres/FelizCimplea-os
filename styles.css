@@ -38,17 +38,19 @@ p {
 
 /* Reproductor de música */
 .music-player {
-    margin-top: 20px;
+    margin: 20px auto;
     padding: 20px;
     background: #ffffff1a;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    text-align: center;
 }
 
 .music-player h1 {
     font-size: 1.8em;
     margin-bottom: 10px;
-    color: #ffd9ec; /* Rosa claro */
+    color: #ffd9ec;
 }
 
 /* Controles del reproductor */
@@ -84,25 +86,44 @@ p {
     border-radius: 5px;
     font-size: 1em;
     border: 1px solid #ff758c;
-    background: white;
-    color: #ff758c;
+    background: #2c2c2c; /* Fondo oscuro */
+    color: white; /* Texto en color blanco */
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Control de volumen */
+
+/* Contenedor de volumen en vertical */
 .volume-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-top: 15px;
+    height: 150px;
 }
 
+/* Label del volumen */
 .volume-control label {
-    font-size: 1.2em;
+    font-size: 1em;
+    margin-bottom: 10px;
     color: white;
 }
 
 #volume-control {
-    width: 60%;
-    margin: 10px 0;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(to top, #ff758c, #ff4757);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#volume-control:hover {
+    background: linear-gradient(to top, #ff4757, #ff758c);
     cursor: pointer;
 }
 
@@ -118,6 +139,8 @@ p {
 .progress-container {
     position: relative;
     width: 80%;
+    max-width: 400px;
+    margin: 20px auto;
     height: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -173,16 +196,22 @@ button.next {
     position: relative;
     width: 100%;
     max-width: 600px;
-    height: 600px;
     margin: 20px auto;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    /* Relación de aspecto 1:1 (cuadrado) */
+    padding-top: 100%; /* 100% de padding-top asegura que la altura sea igual al ancho */
 }
 
 .slides {
     display: flex;
     transition: transform 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .slide {
@@ -219,7 +248,7 @@ button.next {
 }
 
 .indicator.active {
-    background-color: #bb1669; /* Rosa claro */
+    background-color: #bb1669;
 }
 
 
@@ -246,20 +275,16 @@ canvas#particleCanvas {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-#volume-control:hover {
-    background: linear-gradient(to right, #ff4757, #ff758c);
-    cursor: pointer;
-}
-
+/* Estilo del thumb (punto de control) */
 #volume-control::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-color: white;
     border: 2px solid #ff4757;
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -268,3 +293,139 @@ canvas#particleCanvas {
     transform: scale(1.2);
     background-color: #ffd9ec;
 }
+
+/* Consultas de medios para responsividad */
+
+/* Consulta de medios para pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        margin: 2% auto;
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .message {
+        font-size: 1.2em;
+    }
+
+    .music-player {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .music-player h1 {
+        font-size: 1.5em;
+    }
+
+    .controls button {
+        padding: 8px 12px;
+        font-size: 1.2em;
+    }
+
+    #song-list {
+        font-size: 0.9em;
+    }
+
+    .volume-control {
+        height: 120px;
+    }
+
+    .slider {
+        height: 300px;
+    }
+
+    .progress-container {
+        width: 90%;
+    }
+
+    .progress-bar {
+        height: 100%;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Consulta de medios para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        margin: 5% auto;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .message {
+        font-size: 1.1em;
+    }
+
+    .music-player {
+        padding: 8px;
+        max-width: 100%;
+    }
+
+    .controls button {
+        padding: 8px;
+        font-size: 1.2em;
+    }
+
+    #song-list {
+        font-size: 0.8em;
+    }
+
+    .volume-control {
+        height: 100px;
+    }
+
+    .progress-container {
+        width: 95%;
+    }
+
+    .slider {
+        height: 250px;
+    }
+
+    .indicator {
+        width: 6px;
+        height: 6px;
+    }
+}
+section {
+    display: flex;
+    width: 600px;
+    height: 430px;
+}
+section img {
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .8;
+    transition: .5s ease
+}
+section img:hover{
+    cursor: crosshair;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
